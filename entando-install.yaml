@@ -52,7 +52,7 @@ data:
   entando-k8s-dbjob: >-
     {"version":"6.3.8","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-keycloak-controller: >-
-    {"version":"6.3.8","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
+    {"version":"6.3.8-2","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-plugin-controller: >-
     {"version":"6.3.7","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-service: >-
