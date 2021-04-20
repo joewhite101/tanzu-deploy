@@ -28,52 +28,52 @@ metadata:
   namespace: entando
 data:
   app-builder: >-
-    {"version":"6.3.47-2","executable-type":"n/a","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.47-1","executable-type":"n/a","registry":"harbor-01a.corp.local","organization":"testproject"}
   busybox: >-
-    {"version":"latest","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"latest","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-avatar-plugin: >-
-    {"version":"6.0.5","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.0.5","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-component-manager: >-
-    {"version":"6.3.13-1","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.13-1","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-de-app-eap: >-
-    {"version":"6.3.58-2","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.58-1","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-de-app-wildfly: >-
-    {"version":"6.3.58","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.58","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-app-controller: >-
     {"version":"6.3.9","executable-type":"jvm","registry":"docker.io","organization":"entando"}
   entando-k8s-app-plugin-link-controller: >-
-    {"version":"6.3.5","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.5","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-cluster-infrastructure-controller: >-
-    {"version":"6.3.7","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.7","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-composite-app-controller: >-
-    {"version":"6.3.11","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.8","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-database-service-controller: >-
-    {"version":"6.3.11","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.11","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-dbjob: >-
-    {"version":"6.3.8","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.8","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-keycloak-controller: >-
-    {"version":"6.3.8","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.8","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-plugin-controller: >-
-    {"version":"6.3.7","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.7","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-k8s-service: >-
-    {"version":"6.3.4","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.4","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-keycloak: >-
-    {"version":"6.3.8","executable-type":"","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.8","executable-type":"","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-plugin-sidecar: >-
-    {"version":"6.0.2","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.0.2","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-process-driven-plugin: >-
-    {"version":"6.0.50","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+    {"version":"6.0.50","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"testproject"}
   entando-redhat-sso: >-
-    {"version":"6.3.9","executable-type":"","registry":"docker.io","organization":"entando"}
+    {"version":"6.3.9","executable-type":"","registry":"harbor-01a.corp.local","organization":"testproject"}
   mysql-80-centos7: >-
-    {"version":"latest","executable-type":"jvm","registry":"docker.io","organization":"centos"}
+    {"version":"latest","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"centos"}
   postgresql-12-centos7: >-
-    {"version":"latest","executable-type":"jvm","registry":"docker.io","organization":"centos"}
+    {"version":"latest","executable-type":"jvm","registry":"harbor-01a.corp.local","organization":"centos"}
   rhel8-mysql-80: >-
     {"version":"latest","executable-type":"jvm","registry":"registry.redhat.io","organization":"rhel8"}
   rhel8-postgresql-12: >-
     {"version":"latest","executable-type":"jvm","registry":"registry.redhat.io","organization":"rhel8"}
-        
+
 ---
 # Source: preview/charts/operator/templates/k8s-service-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -330,7 +330,7 @@ spec:
       volumes:
       containers:
         - name: operator
-          image: "docker.io/entando/entando-k8s-controller-coordinator:6.3.9"
+          image: "harbor-01a.corp.local/testproject/entando-k8s-controller-coordinator:6.3.8"
           imagePullPolicy: Always
           volumeMounts:
           env:
@@ -341,7 +341,7 @@ spec:
             - name: ENTANDO_ASSUME_EXTERNAL_HTTPS_PROVIDER
               value: "false"
             - name: ENTANDO_DEFAULT_ROUTING_SUFFIX
-              value: "192.168.64.21.nip.io"
+              value: "192.168.100.50.nip.io"
             - name: ENTANDO_DISABLE_KEYCLOAK_SSL_REQUIREMENT
               value: "true"
             - name: ENTANDO_DOCKER_IMAGE_ORG_FALLBACK
@@ -362,6 +362,10 @@ spec:
               value: "1000"
             - name: ENTANDO_POD_READINESS_TIMEOUT_SECONDS
               value: "1000"
+            - name: ENTANDO_INGRESS_CLASS
+              value: "nginx"
+            - name: ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE
+              value: "true"
           livenessProbe:
             exec:
               command:
